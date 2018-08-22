@@ -1,6 +1,7 @@
 // alert('yolo!');
 let scoreComp = 0;
 let scoreUser = 0;
+let gameResult = '';
 
 
 function computerPlay () {
@@ -35,35 +36,35 @@ function computerPlay () {
     
     //if player chooses Rock
     if(playerSelection === 'Rock' && computerSelection === 'Rock'){
-        return `Its a Tie! Both players chose Rock. The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Its a Tie! Both players chose Rock. The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     } else if(playerSelection === "Rock" && computerSelection === 'Paper') {
         scoreComp += 1
-        return `Computer has won, Paper wraps Rock! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Computer has won, Paper wraps Rock! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     } else if(playerSelection === 'Rock' && computerSelection === 'Scissors') {
         scoreUser += 1;
-        return `Congrats! You won, Rock breaks Scissors! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Congrats! You won, Rock breaks Scissors! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     }
 
     //if player chooses Paper
     if(playerSelection === 'Paper' && computerSelection === 'Paper'){
-        return `Its a Tie! Both players chose Paper. The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Its a Tie! Both players chose Paper. The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     } else if(playerSelection === "Paper" && computerSelection === 'Scissors') {
         scoreComp += 1;
-        return `Computer has won, Scissors cut Paper! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Computer has won, Scissors cut Paper! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     } else if(playerSelection === 'Paper' && computerSelection === 'Rock') {
         scoreUser += 1;
-        return `Congrats! You won, Paper wraps Rock! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Congrats! You won, Paper wraps Rock! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     }
 
     //if player chooses Scissors
     if(playerSelection === 'Scissors' && computerSelection === 'Scissors'){
-        return `Its a Tie! Both players chose Scissors. The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Its a Tie! Both players chose Scissors. The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     } else if(playerSelection === "Scissors" && computerSelection === 'Rock') {
         scoreComp += 1;
-        return `Computer has won, Rock breaks Scissors! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Computer has won, Rock breaks Scissors! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     } else if(playerSelection === 'Scissors' && computerSelection === 'Paper') {
         scoreUser += 1;
-        return `Congrats! You won, Scissors cut Paper! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
+        gameResult = `Congrats! You won, Scissors cut Paper! The current score is --> User:${scoreUser} VS Computer:${scoreComp}`;
     }
    
   };
@@ -113,7 +114,7 @@ var positionDisplay = document.querySelector('#winner');
 var displayWinner = document.createElement('div');
 displayWinner.setAttribute('id','victor')
 positionDisplay.appendChild(displayWinner);
-displayWinner.style.cssText = ' border: 1px green solid; width: 100px; height: 56px; background: #efdeb3;'
+displayWinner.style.cssText = ' border: 1px green solid; width: 500px; height: 56px; background: #efdeb3;'
 
 
 //ROCK PAPER SCISSOR container
@@ -148,29 +149,35 @@ scissorButton.textContent ='Scissor button';
 positionButtonDisplay.appendChild(scissorButton);
 //end of game board
 
+//BUTTON game function
 var buttonFinderRock = document.querySelector('#rock');
-// buttonFinder.onclick = () => alert("you chose rock");
-buttonFinderRock.addEventListener('click', () => {
-  console.log(singleRound('rock', computerPlay()));
-});
+	 buttonFinderRock.addEventListener('click', () => {
+	 	 singleRound('rock', computerPlay());
+	 	 yourScore.textContent = `Your score: ${scoreUser}`;
+	 	 computerScore.textContent = `Computer Score: ${scoreComp}`;
+	     displayWinner.textContent = gameResult;  
+  	     // console.log(singleRound('rock', computerPlay()));
+   });
 
 var buttonFinderPaper = document.querySelector('#paper');
-// buttonFinder.onclick = () => alert("you chose paper");
-buttonFinderPaper.addEventListener('click', () => {
-  console.log(singleRound('paper', computerPlay()));
-});
+     buttonFinderPaper.addEventListener('click', () => {
+     	 singleRound('paper', computerPlay());
+     	 yourScore.textContent = `Your score: ${scoreUser}`;
+	 	 computerScore.textContent = `Computer Score: ${scoreComp}`;
+         displayWinner.textContent = gameResult; 	
+   //       console.log(singleRound('paper', computerPlay()));
+    });
 
 var buttonFinderScissor = document.querySelector('#scissor');
-// buttonFinder.onclick = () => alert("you chose rock");
-buttonFinderScissor.addEventListener('click', () => {
-  console.log(singleRound('scissors', computerPlay()));
-});
+     buttonFinderScissor.addEventListener('click', () => {
+     	 singleRound('scissors', computerPlay());
+     	 yourScore.textContent = `Your score: ${scoreUser}`;
+	 	 computerScore.textContent = `Computer Score: ${scoreComp}`;
+         displayWinner.textContent = gameResult; 
+         // console.log(singleRound('scissors', computerPlay()));
+    });
 
-// var buttonFinder = document.querySelector('#paper');
-// buttonFinder.onclick = () => alert("you chose paper");
-
-// var buttonFinder = document.querySelector('#scissor');
-// buttonFinder.onclick = () => alert("you chose scissors");
+// 
 
 
 
